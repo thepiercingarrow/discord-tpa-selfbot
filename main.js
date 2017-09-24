@@ -52,23 +52,32 @@ function prune(cid, num) {
 	    }
 	    for (var i = 0; i < msgArr.length; ++i)
 		if (msgArr[i].author.id == myUID) {
-		    // delMsgs.push(msgArr[i].id);
+		    delMsgs.push(msgArr[i].id);
 		    bot.deleteMessage({
 			channelID: cid,
 			messageID: msgArr[i].id
 		    });
 		}
-	    // bot.deleteMessages({
-	    // 	channelID: cid,
-	    // 	messageIDs: delMsgs
-	    // }, (err, res) => {
-	    // 	if (err)
-	    // 	    log(err);
-	    // 	else
-	    // 	    log(res);
-	    // });
+	    function del(data) {
+		if (data.delMsgs.length > 0)
+		bot.deleteMessages({
+		    channelID: data.cid,
+		    messageID: data.delMsgs.pop();
+		});
+		setTimeout(del, 100, { cid: data.cid, delMsgs: data.delMsgs } );
+	    }
+	    setTimeout(del, 100, { cid: cid, delMsgs: delMsgs } );
 	});
+	// bot.deleteMessages({
+	// 	channelID: cid,
+	// 	messageIDs: delMsgs
+	// }, (err, res) => {
+	// 	if (err)
+	// 	    log(err);
+	// 	else
+	// 	    log(res);
+	// });
+	else
+	    log('prune an integer <= 100');
     }
-    else
-	log('prune an integer <= 100');
 }
