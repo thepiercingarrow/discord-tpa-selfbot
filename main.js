@@ -40,7 +40,7 @@ function prune(cid, num) {
     var lastmsg = (bot.channels[cid] || bot.directMessages[cid]).last_message_id;
     if (num <= 100) {
 	log(num);
-	var delMsgs = [];
+	// var delMsgs = [];
 	bot.getMessages({
 	    channelID: cid,
 	    before: lastmsg,
@@ -52,18 +52,21 @@ function prune(cid, num) {
 	    }
 	    for (var i = 0; i < msgArr.length; ++i)
 		if (msgArr[i].author.id == myUID) {
-		    delMsgs.push(msgArr[i].id);
-		    log(delMsgs);
+		    // delMsgs.push(msgArr[i].id);
+		    bot.deleteMessage({
+			channelID: cid,
+			messageID: msgArr[i].id
+		    });
 		}
-	    bot.deleteMessages({
-		channelID: cid,
-		messageIDs: delMsgs
-	    }, (err, res) => {
-		if (err)
-		    log(err);
-		else
-		    log(res);
-	    });
+	    // bot.deleteMessages({
+	    // 	channelID: cid,
+	    // 	messageIDs: delMsgs
+	    // }, (err, res) => {
+	    // 	if (err)
+	    // 	    log(err);
+	    // 	else
+	    // 	    log(res);
+	    // });
 	});
     }
     else
