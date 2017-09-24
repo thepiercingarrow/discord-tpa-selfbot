@@ -36,6 +36,7 @@ bot.on('message', function(user, uid, cid, m, e) {
 });
 
 function prune(cid, num) {
+    log('deleting ' + num + ' messages from ' + cid);
     var earliest = bot.channels[cid].last_message_id;
     while (num > 0) {
 	if (num <= 100) {
@@ -46,8 +47,10 @@ function prune(cid, num) {
 		limit: num
 	    }, (err, msgArr) => {
 		for (var i = 0; i < msgArr.length; ++i)
-		    if (msgArr[i].author.id == myUID)
+		    if (msgArr[i].author.id == myUID) {
 			delMsgs.push(msgArr[i].id);
+			log(msgArr);
+		    }
 		bot.deleteMessages({
 		    channelID: cid,
 		    messageIDs: delMsgs
