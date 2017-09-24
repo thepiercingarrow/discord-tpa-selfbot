@@ -77,7 +77,7 @@ function prune(cid, num) {
 	// 	else
 	// 	    log(res);
 	// });
-	else
-	    log('prune an integer <= 100');
     }
+    else
+	log('prune an integer <= 100');
 }
