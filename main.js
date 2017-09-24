@@ -2,12 +2,12 @@ var PREFIX = '$';
 
 var myUID;
 
-var log = document.getElementById('log');
+var logelement = document.getElementById('log');
 
 function log(m, color) {
     var msg = document.createElement('li');
     msg.appendChild(document.createTextNode(m));
-    log.appendChild(msg);
+    logelement.appendChild(msg);
 }
 
 var bot = new Discord.Client({
