@@ -38,31 +38,29 @@ bot.on('message', function(user, uid, cid, m, e) {
 function prune(cid, num) {
     log('deleting ' + num + ' messages from ' + cid);
     var lastmsg = (bot.channels[cid] || bot.directMessages[cid]).last_message_id;
-    while (num > 0) {
-	if (num <= 100) {
-	    log(num);
-	    var delMsgs = [];
-	    bot.getMessages({
-		channelID: cid,
-		before: lastmsg
-		limit: num
-	    }, (err, msgArr) => {
-		if (err) {
-		    log(err);
-		    return;
+    if (num <= 100) {
+	log(num);
+	var delMsgs = [];
+	bot.getMessages({
+	    channelID: cid,
+	    before: lastmsg
+	    limit: num
+	}, (err, msgArr) => {
+	    if (err) {
+		log(err);
+		return;
+	    }
+	    for (var i = 0; i < msgArr.length; ++i)
+		if (msgArr[i].author.id == myUID) {
+		    delMsgs.push(msgArr[i].id);
+		    log(msgArr);
 		}
-		for (var i = 0; i < msgArr.length; ++i)
-		    if (msgArr[i].author.id == myUID) {
-			delMsgs.push(msgArr[i].id);
-			log(msgArr);
-		    }
-		bot.deleteMessages({
-		    channelID: cid,
-		    messageIDs: delMsgs
-		});
+	    bot.deleteMessages({
+		channelID: cid,
+		messageIDs: delMsgs
 	    });
-			    
-	}
-	log('only prune 100 or less :(');
+	});
+	
     }
+    log('only prune 100 or less :(');
 }
