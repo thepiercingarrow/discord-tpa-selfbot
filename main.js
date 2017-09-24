@@ -58,8 +58,14 @@ function prune(cid, num) {
 	    bot.deleteMessages({
 		channelID: cid,
 		messageIDs: delMsgs
+	    }, (err, res) => {
+		if (err)
+		    log(err);
+		else
+		    log(res);
 	    });
 	});
     }
-    log('only prune 100 or less :(');
+    else
+	log('prune an integer <= 100');
 }
