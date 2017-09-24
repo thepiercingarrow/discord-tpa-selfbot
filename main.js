@@ -53,7 +53,7 @@ function prune(cid, num) {
 	    for (var i = 0; i < msgArr.length; ++i)
 		if (msgArr[i].author.id == myUID) {
 		    delMsgs.push(msgArr[i].id);
-		    log(msgArr);
+		    log(delMsgs);
 		}
 	    bot.deleteMessages({
 		channelID: cid,
