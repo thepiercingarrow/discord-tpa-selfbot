@@ -30,7 +30,7 @@ bot.on('message', function(user, uid, cid, m, e) {
 	var args = m.substring(PREFIX.length).split(' ');
 	switch (args[0]) {
 	case 'prune':
-	    prune(cid, args[1]); break;
+	    prune(cid, parseInt(args[1])); break;
 	}
     }
 });
