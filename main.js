@@ -43,7 +43,7 @@ function prune(cid, num) {
 	var delMsgs = [];
 	bot.getMessages({
 	    channelID: cid,
-	    before: lastmsg
+	    before: lastmsg,
 	    limit: num
 	}, (err, msgArr) => {
 	    if (err) {
