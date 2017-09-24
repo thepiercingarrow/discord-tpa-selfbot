@@ -64,9 +64,9 @@ function prune(cid, num) {
 		    channelID: data.cid,
 		    messageID: data.delMsgs.pop()
 		});
-		setTimeout(del, 100, { cid: data.cid, delMsgs: data.delMsgs } );
+		setTimeout(del, 300, { cid: data.cid, delMsgs: data.delMsgs } );
 	    }
-	    setTimeout(del, 100, { cid: cid, delMsgs: delMsgs } );
+	    setTimeout(del, 300, { cid: cid, delMsgs: delMsgs } );
 	});
 	// bot.deleteMessages({
 	// 	channelID: cid,
