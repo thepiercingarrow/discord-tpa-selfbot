@@ -46,6 +46,10 @@ function prune(cid, num) {
 		before: earliest,
 		limit: num
 	    }, (err, msgArr) => {
+		if (err) {
+		    log(err);
+		    return;
+		}
 		for (var i = 0; i < msgArr.length; ++i)
 		    if (msgArr[i].author.id == myUID) {
 			delMsgs.push(msgArr[i].id);
