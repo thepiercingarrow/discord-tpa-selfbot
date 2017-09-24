@@ -39,18 +39,22 @@ function prune(cid, num) {
     var earliest = bot.channels[cid].last_message_id;
     while (num > 0) {
 	if (num <= 100) {
-	    // finish up and break
+	    var delMsgs = [];
 	    bot.getMessages({
 		channelID: cid,
 		before: earliest,
 		limit: num
 	    }, (err, msgArr) => {
-		for (i = 0; i < msgArr.length; ++i)
-		    console.log(msgArr[i]);
+		for (var i = 0; i < msgArr.length; ++i)
+		    if (msgArr[i].author.id == myUID)
+			delMsgs.push(msgArr[i].id);
+		bot.deleteMessages({
+		    channelID: cid,
+		    messageIDs: delMsgs
+		});
 	    });
 			    
 	}
-	num -= 99;
-	console.log('');
+	log('only prune 100 or less :(');
     }
 }
