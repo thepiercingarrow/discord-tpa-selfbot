@@ -40,7 +40,7 @@ function prune(cid, num) {
     var lastmsg = (bot.channels[cid] || bot.directMessages[cid]).last_message_id;
     if (num <= 100) {
 	log(num);
-	// var delMsgs = [];
+	var delMsgs = [];
 	bot.getMessages({
 	    channelID: cid,
 	    before: lastmsg,
