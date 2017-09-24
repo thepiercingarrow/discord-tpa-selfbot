@@ -59,14 +59,16 @@ function prune(cid, num) {
 		    });
 		}
 	    function del(data) {
-		if (data.delMsgs.length > 0)
-		bot.deleteMessages({
-		    channelID: data.cid,
-		    messageID: data.delMsgs.pop()
-		});
-		setTimeout(del, 1000, { cid: data.cid, delMsgs: data.delMsgs } );
+		if (data.delMsgs.length > 0) {
+		    var delmsg = data.delMsgs.pop();
+		    bot.deleteMessages({
+			channelID: data.cid,
+			messageID: delmsg
+		    });
+		    setTimeout(del, 300, { cid: data.cid, delMsgs: data.delMsgs } );
+		}
 	    }
-	    setTimeout(del, 1000, { cid: cid, delMsgs: delMsgs } );
+	    setTimeout(del, 300, { cid: cid, delMsgs: delMsgs } );
 	});
 	// bot.deleteMessages({
 	// 	channelID: cid,
