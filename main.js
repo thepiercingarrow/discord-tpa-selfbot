@@ -2,7 +2,11 @@ var PREFIX = '$';
 
 var myUID;
 
-var logelement = document.getElementById('log');
+var logelement;
+
+function init() {
+    logelement = document.getElementById('log');
+}
 
 function log(m, color) {
     var msg = document.createElement('li');
