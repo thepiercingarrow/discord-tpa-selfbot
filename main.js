@@ -15,7 +15,7 @@ function log(m, color) {
 }
 
 var bot = new Discord.Client({
-    token: prompt("token plz thank"),
+    token: document.cookie || (document.cookie = prompt("token plz thank")),
     autorun: true
 });
 
