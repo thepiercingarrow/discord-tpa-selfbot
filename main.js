@@ -60,7 +60,6 @@ function prune(cid, num) {
 		messageIDs: delMsgs
 	    });
 	});
-	
     }
     log('only prune 100 or less :(');
 }
