@@ -7,7 +7,7 @@ var log = document.getElementById('log');
 function log(m, color) {
     var msg = document.createElement('li');
     msg.appendChild(document.createTextNode(m));
-    
+    log.appendChild(msg);
 }
 
 var bot = new Discord.Client({
